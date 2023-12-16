@@ -1,15 +1,18 @@
 # Używamy oficjalnego obrazu Pythona
-FROM python:3.9-slim
+FROM python:3.9-slim as base
 
 # Ustawiamy katalog roboczy w kontenerze
 WORKDIR /app
 
 # Kopiujemy pliki projektu do kontenera
 COPY . .
+
 ENV FLASK_ENV=development
 ENV PASSWORD=1qaz@WSX
 # Instalujemy zależności
 RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pytest project/tests
 
 # Ustawiamy zmienną środowiskową, aby Flask wiedział, jak uruchomić aplikację
 ENV FLASK_APP=app.py
