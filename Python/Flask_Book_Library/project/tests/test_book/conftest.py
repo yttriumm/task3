@@ -32,12 +32,7 @@ EXTREMES = (
     "longstring"*20
 )
 
-@pytest.fixture
-def book():
-    return Book(
-        name=BookDefaults.NAME,
-        author=BookDefaults.AUTHOR,
-        year_published=BookDefaults.YEAR_PUBLISHED,
-        book_type=BookDefaults.BOOK_TYPE,
-        status=BookDefaults.STATUS
-                )
+
+def create_book(name=BookDefaults.NAME, author=BookDefaults.AUTHOR, year_published=BookDefaults.YEAR_PUBLISHED,
+                book_type=BookDefaults.BOOK_TYPE, status=BookDefaults.STATUS) -> Book:
+    return Book(name=name, author=author, year_published=year_published, book_type=book_type, status=status)
